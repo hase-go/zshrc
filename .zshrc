@@ -18,6 +18,9 @@ alias lz="lazygit"
 alias c="clear"
 alias poke="pokemon-colorscripts"
 
+alias gh="open https://github.com/" 
+alias qnap="open https://drive.google.com/drive/u/0/folders/0AEq_17n2qX_iUk9PVA"
+
 setopt hist_ignore_all_dups
 setopt share_history
 setopt ignore_eof
