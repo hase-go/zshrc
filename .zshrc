@@ -1,7 +1,7 @@
 
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="arrows"
+ZSH_THEME="george"
 
 plugins=(git zsh-syntax-highlighting you-should-use zsh-autocomplete)
 
@@ -20,10 +20,12 @@ alias vi="nvim"
 alias ez="emacs ~/.zshrc"
 alias vz="nvim ~/.zshrc"
 alias sz="source ~/.zshrc"
+alias cz="code ~/.zshrc"
 alias ls="ls -FG"
 alias lz="lazygit"
 alias c="clear"
 alias poke="pokemon-colorscripts"
+alias code="open -a 'Visual Studio Code'" 
 
 #alias for Webpage
 alias ghub="open https://github.com/"
@@ -39,6 +41,7 @@ alias ical="open -a Calendar"
 alias ode="open -a Finder ~/ODE/ODE15"
 alias f="open -a Finder"
 alias dl="open -a Finder ~/Downloads"
+
 
 setopt hist_ignore_all_dups
 setopt share_history
@@ -57,8 +60,15 @@ bindkey "$terminfo[kcbt]" menu-select
 bindkey -M menuselect              '^I'         menu-complete
 bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete
 
+done-notify() {
+  local var=$(echo $history[$HISTCMD] | sed -e "s/$0//" -e 's/ *; *//' -e 's/ *&& *//')
+  osascript -e 'display notification "'"$var finished!"'" with title "Terminal"'
+}
+
 chpwd (){
-    ls -A;
+  if [[ $(pwd) != $HOME ]]; then   
+    ls -a;
+  fi
 }
 
 fcd (){
@@ -77,3 +87,4 @@ fi
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 poke -r
+
